@@ -2,17 +2,21 @@ import { Injectable } from '@nestjs/common';
 import { CreateScenarioDto } from './dto/create-scenario.dto';
 import { UpdateScenarioDto } from './dto/update-scenario.dto';
 import { CreateScenario } from './use-cases/create-scenario.use-case';
+import { ListScenarioRepository } from './repository';
 
 @Injectable()
 export class ScenarioService {
-  constructor(private readonly createScenario: CreateScenario) {}
+  constructor(
+    private readonly createScenario: CreateScenario,
+    private readonly listScenarioUseCase: ListScenarioRepository
+    ) {}
   
   create(data: CreateScenarioDto) {
     return this.createScenario.execute(data);
   }
 
   findAll() {
-    return `This action returns all scenario`;
+    return this.listScenarioUseCase.list();
   }
 
   findOne(id: number) {
