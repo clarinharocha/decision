@@ -11,7 +11,7 @@ export class ListScenario{
         private readonly logger: Logger,   
         ){}
 
-        async execute(data: ListScenario){
+        async execute(){
             try {
                 const scenario = await this.createScenarioRepository.list();
                 return scenario;
