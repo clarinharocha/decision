@@ -1,11 +1,11 @@
 import { Injectable, Logger } from "@nestjs/common";
-import { findOneRepository } from "../repository/findone.repository";
+import { deleteRepository } from "../repository";
 
 
 @Injectable()
-export class FindOneScenario {
+export class deleteScenario {
     constructor(
-        private readonly createScenarioRepository: findOneRepository,
+        private readonly createScenarioRepository: deleteRepository,
         private readonly logger: Logger,    
     ){}
 

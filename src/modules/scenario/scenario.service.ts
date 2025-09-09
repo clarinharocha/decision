@@ -7,6 +7,7 @@ import { FindOneScenario, ListScenario } from './use-cases';
 
 @Injectable()
 export class ScenarioService {
+  deleteScenario: any;
   constructor(
     private readonly createScenario: CreateScenario,
     private readonly listScenarioUseCase: ListScenario, 
@@ -29,7 +30,7 @@ export class ScenarioService {
     return `This action updates a #${id} scenario`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} scenario`;
+  remove(id: string) {
+    return this.deleteScenario.execute(id);
   }
 }
