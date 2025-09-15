@@ -3,15 +3,16 @@ import { CreateScenarioDto } from './dto/create-scenario.dto';
 import { UpdateScenarioDto } from './dto/update-scenario.dto';
 import { CreateScenario } from './use-cases/create-scenario.use-case';
 import { ListScenarioRepository, findOneRepository } from './repository';
-import { FindOneScenario, ListScenario } from './use-cases';
+import { FindOneScenario, ListScenario, UpdateScenario, deleteScenario } from './use-cases';
 
 @Injectable()
 export class ScenarioService {
-  deleteScenario: any;
   constructor(
     private readonly createScenario: CreateScenario,
     private readonly listScenarioUseCase: ListScenario, 
-    private readonly findOneScenario: FindOneScenario
+    private readonly findOneScenario: FindOneScenario,
+    private readonly deleteScenario: deleteScenario,
+    private readonly updateScenarioUseCase: UpdateScenario,
     ) {}
   
   create(data: CreateScenarioDto) {
@@ -26,8 +27,8 @@ export class ScenarioService {
     return this.findOneScenario.execute(id);
   }
 
-  update(id: number, updateScenarioDto: UpdateScenarioDto) {
-    return `This action updates a #${id} scenario`;
+  update(id: string, updateScenarioDto: UpdateScenarioDto) {
+    return this.updateScenarioUseCase.execute(id, updateScenarioDto);
   }
 
   remove(id: string) {
