@@ -6,7 +6,7 @@ import { CreateOptionDto } from '../dto/create-option.dto';
 export class CreateOptionRepository {
     constructor(private readonly prisma: PrismaService) {}
     async create(data: CreateOptionDto) {
-        const option = await this.prisma.option.create({data,});
+        const option = await this.prisma.option.create({data});
         return option; 
     }
 }
