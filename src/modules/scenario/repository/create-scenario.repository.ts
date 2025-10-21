@@ -1,15 +1,16 @@
-import { Injectable } from '@nestjs/common';
-import { PrismaService } from 'src/shared/databases/prisma.database';
-import { CreateScenarioDto } from '../dto/create-scenario.dto'; 
+/* eslint-disable prettier/prettier */
+import { Injectable } from "@nestjs/common";
+import { PrismaService } from "src/shared/databases/prisma.database";
+import { CreateScenarioDto } from "../dto/create-scenario.dto";
 
 @Injectable()
-export class CreateScenarioRepository {
-    constructor(private readonly prisma: PrismaService) {}
+export class CreateScenarioRepository{
+     constructor(private readonly prisma: PrismaService) {}
 
-    async create(data: CreateScenarioDto) {
+     async create(data: CreateScenarioDto) {
         const scenario = await this.prisma.scenario.create({
             data,
         });
-        return scenario; 
-    }
+        return scenario;
+     }
 }

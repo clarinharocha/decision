@@ -1,6 +1,6 @@
-import { Global, Module } from "@nestjs/common";
-import { PrismaService } from "./databases/prisma.database";    
-import { Logger } from "@nestjs/common/services/logger.service";
+/* eslint-disable prettier/prettier */
+import { Global, Logger, Module } from "@nestjs/common";
+import { PrismaService } from "./databases/prisma.database";
 
 
 @Global()
@@ -9,4 +9,4 @@ import { Logger } from "@nestjs/common/services/logger.service";
     providers: [PrismaService, Logger],
     exports: [PrismaService],
 })
-export class SharedModule {}
+export class sharedModule {}
