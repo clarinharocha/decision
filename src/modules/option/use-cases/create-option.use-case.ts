@@ -1,26 +1,20 @@
 /* eslint-disable prettier/prettier */
-/* eslint-disable prettier/prettier */
 import { Injectable, Logger } from "@nestjs/common";
+
 import { CreateOptionDto } from "../dto/create-option.dto";
-import { createOptionRepository } from "../repository";
-
-
+import { CreateOptionRepository } from "../repository";
 
 @Injectable()
 export class CreateOptionUseCase {
-    constructor(
-        private readonly createOptionRepository: createOptionRepository,
-        private readonly logger: Logger,
-    ){}
-
-    async execute(data: CreateOptionDto) {
-            try {
-                const Option = await this.createOptionRepository.create(data);
-                this.logger.log('Option created: ${Option.title');
-                return Option;
-            } catch (error) {
-                this.logger.error(error);
-                throw error;
-            }
+    constructor(private readonly createoptionRepository: CreateOptionRepository,
+    private readonly logger:Logger) {}
+  async execute(data: CreateOptionDto){
+    try {
+        const option = await this.createoptionRepository.create(data);
+        return option;
+    } catch (error) {
+        this.logger.error('Error creating option', error);
+        throw error;
     }
+  }
 }

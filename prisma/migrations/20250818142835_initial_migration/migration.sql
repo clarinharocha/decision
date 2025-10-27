@@ -12,8 +12,8 @@ CREATE TABLE "public"."Scenario" (
 CREATE TABLE "public"."Option" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
-    "description" TEXT,
     "scenarioId" TEXT NOT NULL,
+    "description" TEXT,
 
     CONSTRAINT "Option_pkey" PRIMARY KEY ("id")
 );
@@ -24,7 +24,7 @@ CREATE TABLE "public"."Criterion" (
     "name" TEXT NOT NULL,
     "weight" DOUBLE PRECISION NOT NULL,
     "active" BOOLEAN NOT NULL DEFAULT true,
-    "createId" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "Criterion_pkey" PRIMARY KEY ("id")
 );

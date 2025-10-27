@@ -1,13 +1,15 @@
 /* eslint-disable prettier/prettier */
 import { Injectable } from "@nestjs/common";
-import { PrismaService } from "../../../shared/databases/prisma.database";
+import { PrismaService } from "src/shared/databases/prisma.database";
+
+
 
 @Injectable()
 export class DeleteCriterionRepository {
-    constructor(private readonly prisma: PrismaService) { }
+constructor(private readonly prisma: PrismaService) {}   
+async Delete (id: string){
+    const Criterion = await this.prisma.criterion.delete({where:{id}});
+    return Criterion;
+}
 
-    async delete(id: string) {
-        const criterion = await this.prisma.criterion.delete({ where: { id } });
-        return criterion;
-    }
 }

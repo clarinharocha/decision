@@ -3,13 +3,12 @@ import { Injectable } from "@nestjs/common";
 import { PrismaService } from "src/shared/databases/prisma.database";
 
 
-
 @Injectable()
-export class DeleteOptionRepository {
+export class DeleteScenarioRepository {
 constructor(private readonly prisma: PrismaService) {}   
 async Delete (id: string){
-    const option = await this.prisma.option.delete({where:{id}});
-    return option;
+    const scenario = await this.prisma.scenario.delete({where:{id}});
+    return scenario;
 }
 
 }

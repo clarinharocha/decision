@@ -1,37 +1,36 @@
 /* eslint-disable prettier/prettier */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
+
+import { CreateCriterionUseCase, DeleteCriterionUseCase, FindOneCriterionUseCase, ListCriterionUseCase, UpdateCriterionUseCase } from './use-cases';
 import { CreateCriterionDto } from './dto/create-criterion.dto';
 import { UpdateCriterionDto } from './dto/update-criterion.dto';
-import { CreateCriterionUseCase, ListCriterionUseCase, DeleteCriterionUseCase, FindOneCriterionUseCase, UpdateCriterionUseCase } from './use-cases';
 
 @Injectable()
 export class CriterionService {
-  constructor(
-    private readonly createCriterionUseCase: CreateCriterionUseCase, 
-    private readonly listCriterionUseCase: ListCriterionUseCase, 
+  constructor(private readonly createCriterionUseCase: CreateCriterionUseCase, 
+    private readonly listCriterionUseCase: ListCriterionUseCase,
     private readonly findoneCriterionUseCase: FindOneCriterionUseCase,
     private readonly deleteCriterionUseCase: DeleteCriterionUseCase,
-    private readonly updateCriterionUseCase: UpdateCriterionUseCase
-  ) { }
-  
+    private readonly updateCriterionUseCase: UpdateCriterionUseCase) {}
+
   create(data: CreateCriterionDto) {
     return this.createCriterionUseCase.execute(data);
   }
 
   findAll() {
-    return this.listCriterionUseCase.list();
+   return this.listCriterionUseCase.execute();
   }
+
 
   findOne(id: string) {
-    return this.findoneCriterionUseCase.findone(id);
+    return this.findoneCriterionUseCase.execute(id);
   }
 
-  update(id: string, data: UpdateCriterionDto) {
-    return this.updateCriterionUseCase.update(id, data);
+  update(id: string , data:UpdateCriterionDto) {
+    return this.updateCriterionUseCase.execute(id, data);
   }
 
-  remove(id: string) {
-    return this.deleteCriterionUseCase.delete(id);
+  remove(id:string) {
+    return this.deleteCriterionUseCase.execute(id);
   }
 }

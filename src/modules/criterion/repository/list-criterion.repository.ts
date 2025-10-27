@@ -1,20 +1,14 @@
 /* eslint-disable prettier/prettier */
-import { Injectable, NotFoundException } from "@nestjs/common";
-import { PrismaService } from "../../../shared/databases/prisma.database";
+import { Injectable } from "@nestjs/common";
+import { PrismaService } from "src/shared/databases/prisma.database";
+
 
 @Injectable()
 export class ListCriterionRepository {
-    constructor(private readonly prisma: PrismaService) { }
+constructor(private readonly prisma: PrismaService) {}   
+async list(){
+    const Criterion = await this.prisma.criterion.findMany({});
+    return Criterion;
+}
 
-    async list(){
-        const criterion = await this.prisma.criterion.findMany(
-            {
-                include:{
-                scores:true
-                }
-            }
-        );
-        if (!criterion) {throw new NotFoundException("Criterion not found");}
-        return criterion;
-    }
 }
