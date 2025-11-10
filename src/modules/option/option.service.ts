@@ -13,8 +13,8 @@ export class OptionService {
     private readonly deleteOptionUseCase: DeleteOptionUseCase,
     private readonly updateOptionUseCase: UpdateOptionUseCase) {}
 
-  create(data: CreateOptionDto) {
-    return this.createOptionUseCase.execute(data);
+  create(scenarioId: string, data: CreateOptionDto) {
+    return this.createOptionUseCase.execute(scenarioId, data);
   }
 
   findAll() {
